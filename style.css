@@ -356,6 +356,98 @@ body {
 .cert-score { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
 .cert-date { color: var(--text2); font-size: 14px; margin-bottom: 32px; }
 
+/* ===== DASHBOARD AMÉLIORÉ ===== */
+.btn-stats-nav {
+  background: rgba(79,142,247,0.15); color: var(--accent);
+  border: 1px solid rgba(79,142,247,0.3); border-radius: var(--radius-sm);
+  padding: 6px 14px; cursor: pointer; font-size: 14px; font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-stats-nav:hover { background: rgba(79,142,247,0.3); }
+
+.progress-banner-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.progress-banner-top h2 { font-size: 1.3rem; margin-bottom: 6px; }
+.global-ring-wrap { flex-shrink: 0; }
+.global-ring { width: 80px; height: 80px; }
+#global-ring-fill { transition: stroke-dashoffset 0.8s ease; }
+
+.quick-stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 500px) { .quick-stats-row { grid-template-columns: repeat(2, 1fr); } }
+.qs-item { background: var(--bg); border-radius: var(--radius-sm); padding: 12px; text-align: center; border: 1px solid var(--border); }
+.qs-val { display: block; font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+.qs-label { display: block; font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+.module-card { position: relative; overflow: hidden; }
+.mc-progress-strip { position: absolute; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 3px; transition: width 0.6s ease; }
+.mc-last-visit { display: block; font-size: 11px; color: var(--text2); margin-top: 4px; }
+.time-badge { background: rgba(79,142,247,0.1); color: var(--accent); border: 1px solid rgba(79,142,247,0.2); }
+.badge-gold { background: rgba(245,158,11,0.15) !important; color: var(--warning) !important; border-color: rgba(245,158,11,0.3) !important; }
+
+/* ===== TIMER BAR ===== */
+.lesson-timer-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 20px; background: rgba(79,142,247,0.07);
+  border-bottom: 1px solid rgba(79,142,247,0.15);
+  font-size: 13px; color: var(--text2);
+}
+.timer-icon { font-size: 14px; }
+#lesson-timer-display { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.timer-label { color: var(--text2); }
+.timer-session { color: var(--success); font-size: 12px; margin-left: 4px; }
+
+/* ===== STATS SCREEN ===== */
+.stats-container { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; display: flex; flex-direction: column; gap: 28px; }
+
+.stats-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 600px) { .stats-kpis { grid-template-columns: repeat(2, 1fr); } }
+.kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 16px; text-align: center; }
+.kpi-icon { font-size: 28px; margin-bottom: 8px; }
+.kpi-val { font-size: 1.8rem; font-weight: 900; color: var(--text); line-height: 1; margin-bottom: 6px; }
+.kpi-total { font-size: 1.1rem; font-weight: 500; color: var(--text2); }
+.kpi-label { font-size: 12px; color: var(--text2); }
+
+.stats-section { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.stats-section h3 { font-size: 1rem; margin-bottom: 20px; }
+.stats-note { font-size: 12px; color: var(--text2); margin-top: 12px; }
+
+.chart-container { display: flex; flex-direction: column; gap: 10px; }
+.chart-row { display: grid; grid-template-columns: 180px 1fr 56px; align-items: center; gap: 12px; }
+@media (max-width: 500px) { .chart-row { grid-template-columns: 1fr; } }
+.chart-label { font-size: 13px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chart-bar-wrap { background: var(--bg); border-radius: 999px; height: 18px; position: relative; overflow: visible; }
+.chart-bar-fill { height: 100%; border-radius: 999px; transition: width 0.7s ease; min-width: 4px; }
+.time-bar { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.score-bar { position: relative; z-index: 2; }
+.score-bar-best { position: absolute; top: 0; left: 0; height: 100%; border-radius: 999px; background: rgba(255,255,255,0.12); border: 1px dashed rgba(255,255,255,0.2); z-index: 1; }
+.chart-val { font-size: 13px; font-weight: 700; color: var(--text); text-align: right; }
+
+.chart-legend { display: flex; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+.legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+.best-dot { background: rgba(255,255,255,0.12); border: 1px dashed rgba(255,255,255,0.3); }
+
+.history-list { display: flex; flex-direction: column; gap: 10px; }
+.hist-row { display: flex; align-items: center; gap: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; }
+.hist-medal { font-size: 22px; flex-shrink: 0; }
+.hist-info { flex: 1; min-width: 0; }
+.hist-mod { display: block; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hist-date { display: block; font-size: 12px; color: var(--text2); }
+.hist-score-wrap { text-align: right; flex-shrink: 0; }
+.hist-score { display: block; font-size: 14px; font-weight: 700; }
+.hist-time { display: block; font-size: 11px; color: var(--text2); }
+.score-good { color: var(--success); }
+.score-ok { color: var(--warning); }
+.score-bad { color: var(--danger); }
+.no-data { color: var(--text2); font-size: 14px; }
+
+.stats-reset-zone { text-align: center; padding-top: 8px; }
+.btn-danger { background: rgba(239,68,68,0.1); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); border-radius: var(--radius); padding: 10px 24px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+.btn-danger:hover { background: rgba(239,68,68,0.2); }
+
+/* Quiz result meta */
+.result-meta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; font-size: 13px; color: var(--text2); margin-bottom: 24px; }
+.new-best-badge { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); color: var(--warning); font-weight: 700; padding: 6px 16px; border-radius: 999px; font-size: 14px; margin-bottom: 12px; display: inline-block; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   .mc-right { align-items: flex-start; }

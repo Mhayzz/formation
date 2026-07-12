@@ -59,18 +59,42 @@
   <nav class="topnav">
     <button class="nav-back" onclick="goToHome()">← Accueil</button>
     <span class="nav-title">⚡ Ma Formation</span>
-    <span class="nav-progress" id="nav-progress-text"></span>
+    <button class="btn-stats-nav" onclick="goToStats()">📊 Mes stats</button>
   </nav>
   <div class="dashboard">
     <div class="progress-banner">
-      <h2>Votre progression</h2>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar-fill" id="global-bar"></div>
+      <div class="progress-banner-top">
+        <div>
+          <h2>Votre progression</h2>
+          <p id="global-percent"></p>
+        </div>
+        <div class="global-ring-wrap">
+          <svg class="global-ring" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="#2a3050" stroke-width="7"/>
+            <circle id="global-ring-fill" cx="32" cy="32" r="26" fill="none" stroke="url(#ringGrad)" stroke-width="7" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="163.4" transform="rotate(-90 32 32)"/>
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#4f8ef7"/>
+                <stop offset="100%" stop-color="#7b5cf0"/>
+              </linearGradient>
+            </defs>
+            <text id="global-ring-pct" x="32" y="37" text-anchor="middle" font-size="13" font-weight="800" fill="#e8eaf0">0%</text>
+          </svg>
+        </div>
       </div>
-      <p id="global-percent"></p>
+      <div class="quick-stats-row" id="quick-stats-row"></div>
     </div>
     <div class="modules-list" id="modules-list"></div>
   </div>
+</div>
+
+<!-- ===== STATS ===== -->
+<div id="screen-stats" class="screen">
+  <nav class="topnav">
+    <button class="nav-back" onclick="goToDashboard()">← Modules</button>
+    <span class="nav-title">📊 Mes statistiques</span>
+  </nav>
+  <div class="stats-container" id="stats-container"></div>
 </div>
 
 <!-- ===== LEÇON ===== -->
@@ -80,6 +104,12 @@
     <span class="nav-title" id="lesson-nav-title"></span>
     <span class="nav-progress" id="lesson-nav-steps"></span>
   </nav>
+  <div class="lesson-timer-bar">
+    <span class="timer-icon">⏱</span>
+    <span id="lesson-timer-display">0:00</span>
+    <span class="timer-label">sur ce module</span>
+    <span id="lesson-session-display" class="timer-session"></span>
+  </div>
   <div class="lesson-container">
     <div class="lesson-header">
       <h1 id="lesson-title"></h1>
