@@ -1120,5 +1120,811 @@ const MODULES = [
         explanation: "Avant toute intervention : 1) Couper le disjoncteur, 2) Vérifier l'absence de tension avec un VAT (Vérificateur d'Absence de Tension). Les gants seuls ne suffisent pas."
       }
     ]
+  },
+
+  {
+    id: 8,
+    icon: "🔄",
+    title: "Les transformateurs",
+    subtitle: "Changer la tension grâce à l'induction électromagnétique",
+    steps: [
+      {
+        type: "lesson",
+        title: "Principe de fonctionnement",
+        content: `
+          <p>Un <strong>transformateur</strong> convertit une tension AC en une autre tension AC, en exploitant l'<strong>induction électromagnétique</strong> découverte par Faraday.</p>
+          <div class="analogy-box">
+            <h4>⚙️ Comment ça marche ?</h4>
+            <p>Un courant alternatif dans le <strong>bobinage primaire</strong> crée un champ magnétique variable dans un noyau de fer. Ce champ induit une tension dans le <strong>bobinage secondaire</strong>. Pas de contact électrique direct entre les deux circuits !</p>
+          </div>
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">📥</span>
+              <div><strong>Primaire</strong><p>Le côté qui reçoit la tension d'entrée. N₁ spires.</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">📤</span>
+              <div><strong>Noyau magnétique</strong><p>En fer feuilleté pour canaliser le flux magnétique avec un minimum de pertes.</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">📡</span>
+              <div><strong>Secondaire</strong><p>Le côté qui délivre la tension de sortie. N₂ spires.</p></div>
+            </div>
+          </div>
+          <p class="info-tip">⚠️ Un transformateur ne fonctionne qu'en <strong>courant alternatif</strong>. En courant continu, pas de variation de flux → pas d'induction → rien ne se passe (et la bobine primaire peut griller).</p>
+        `
+      },
+      {
+        type: "lesson",
+        title: "La loi du transformateur idéal",
+        content: `
+          <p>La formule fondamentale du transformateur est appelée la <strong>loi des rapports de transformation</strong> :</p>
+          <div class="formula-box big">
+            <span class="formula">U₁/U₂ = N₁/N₂ = I₂/I₁</span>
+          </div>
+          <p>Où N₁ et N₂ sont le nombre de spires du primaire et du secondaire.</p>
+          <div class="formulas-trio">
+            <div class="formula-card">
+              <span class="fc-title">Rapport de transformation</span>
+              <span class="fc-formula">m = N₂/N₁ = U₂/U₁</span>
+            </div>
+            <div class="formula-card">
+              <span class="fc-title">Élévateur (m &gt; 1)</span>
+              <span class="fc-formula">N₂ &gt; N₁ → U₂ &gt; U₁</span>
+            </div>
+            <div class="formula-card">
+              <span class="fc-title">Abaisseur (m &lt; 1)</span>
+              <span class="fc-formula">N₂ &lt; N₁ → U₂ &lt; U₁</span>
+            </div>
+          </div>
+          <div class="example-calc">
+            <p><strong>Exemple :</strong> Transformateur 230 V → 12 V, N₁ = 460 spires</p>
+            <p>N₂ = N₁ × (U₂/U₁) = 460 × (12/230) = <strong>24 spires</strong></p>
+            <p>Si I₂ = 5 A → I₁ = I₂ × (N₂/N₁) = 5 × (24/460) = <strong>0,26 A</strong></p>
+          </div>
+          <p class="info-tip">💡 La puissance est conservée (transformateur idéal) : P₁ = P₂. Si la tension monte, le courant baisse dans la même proportion.</p>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Types de transformateurs",
+        content: `
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">⚡</span>
+              <div>
+                <strong>Transformateurs de puissance (réseau)</strong>
+                <p>Les géants du réseau électrique — de quelques kVA à plusieurs centaines de MVA. Ils élèvent la tension à 63 000, 225 000 ou 400 000 V pour le transport longue distance.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🏠</span>
+              <div>
+                <strong>Transformateurs de distribution</strong>
+                <p>Ces boîtes grises sur les poteaux ou dans les armoires de rue. Ils abaissent de 20 000 V à 230/400 V pour alimenter les maisons et immeubles.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🔌</span>
+              <div>
+                <strong>Transformateurs d'alimentation</strong>
+                <p>Dans les chargeurs et alimentations : 230 V → 5 V, 12 V, 24 V… pour alimenter l'électronique.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">📡</span>
+              <div>
+                <strong>Transformateurs de mesure (TI, TT)</strong>
+                <p>Ramènent de très hautes tensions/courants à des valeurs mesurables en toute sécurité (5 A, 100 V).</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Pertes et rendement",
+        content: `
+          <p>Un transformateur réel n'est pas parfait. Il présente deux types de pertes :</p>
+          <div class="two-col">
+            <div class="col-card bad">
+              <h4>🌡️ Pertes fer (à vide)</h4>
+              <p>Pertes dans le noyau magnétique, proportionnelles à la tension. Présentes même sans charge au secondaire.</p>
+              <ul><li>Pertes par hystérésis</li><li>Courants de Foucault</li></ul>
+            </div>
+            <div class="col-card bad">
+              <h4>🔥 Pertes cuivre (en charge)</h4>
+              <p>Effet Joule dans les enroulements R × I². Augmentent avec le courant délivré.</p>
+              <ul><li>P_cuivre = R₁I₁² + R₂I₂²</li></ul>
+            </div>
+          </div>
+          <div class="formula-box">
+            <span class="formula">η = P_sortie / P_entrée × 100%</span>
+          </div>
+          <p>Les transformateurs modernes ont un rendement excellent : <strong>97 à 99,5%</strong>. C'est l'une des machines les plus efficaces qui soit.</p>
+          <div class="example-calc">
+            <p><strong>Exemple :</strong> Transfo 1 kVA, pertes fer = 10 W, pertes cuivre = 15 W à pleine charge</p>
+            <p>η = (1000 - 10 - 15) / 1000 × 100 = <strong>97,5%</strong></p>
+          </div>
+        `
+      }
+    ],
+    quiz: [
+      {
+        q: "Un transformateur fonctionne avec quel type de courant ?",
+        choices: ["Courant continu uniquement", "Courant alternatif uniquement", "Les deux indifféremment", "Courant pulsé uniquement"],
+        answer: 1,
+        explanation: "Un transformateur nécessite un courant alternatif pour que le flux magnétique varie et induise une tension au secondaire. En DC, pas de variation → pas d'induction."
+      },
+      {
+        q: "Un transformateur a N₁=500 spires et N₂=100 spires. Sa tension primaire est 230 V. Quelle est la tension secondaire ?",
+        choices: ["1150 V", "46 V", "230 V", "2300 V"],
+        answer: 1,
+        explanation: "U₂ = U₁ × N₂/N₁ = 230 × 100/500 = 230 × 0,2 = 46 V. C'est un transformateur abaisseur (m = 0,2 < 1)."
+      },
+      {
+        q: "Si un transformateur double la tension, que fait-il au courant (transformateur idéal) ?",
+        choices: ["Il double aussi le courant", "Il divise le courant par 2", "Il ne change pas le courant", "Il annule le courant"],
+        answer: 1,
+        explanation: "La puissance est conservée : P = U × I. Si U double, I est divisé par 2 pour que P reste identique."
+      },
+      {
+        q: "À quoi servent les transformateurs THT (très haute tension) sur le réseau électrique ?",
+        choices: ["À produire de l'électricité", "À stocker l'énergie", "À élever la tension pour réduire les pertes lors du transport", "À convertir l'AC en DC"],
+        answer: 2,
+        explanation: "En élevant la tension (jusqu'à 400 000 V), le courant est très faible. Comme P_pertes = R × I², les pertes en ligne sont drastiquement réduites."
+      },
+      {
+        q: "Les pertes 'fer' d'un transformateur sont dues à :",
+        choices: ["L'effet Joule dans les bobinages", "L'hystérésis et les courants de Foucault dans le noyau", "Une mauvaise isolation", "La résistance des fils de connexion"],
+        answer: 1,
+        explanation: "Les pertes fer se produisent dans le noyau magnétique : pertes par hystérésis (réorientation des domaines magnétiques) et courants de Foucault (courants induits dans la masse de fer)."
+      }
+    ]
+  },
+
+  {
+    id: 9,
+    icon: "⚙️",
+    title: "Moteurs et générateurs",
+    subtitle: "Convertir l'énergie électrique en mécanique et vice-versa",
+    steps: [
+      {
+        type: "lesson",
+        title: "La force de Laplace",
+        content: `
+          <p>Un conducteur parcouru par un courant dans un champ magnétique subit une <strong>force mécanique</strong>. C'est la <strong>force de Laplace</strong>, le principe de base de tout moteur électrique.</p>
+          <div class="formula-box big">
+            <span class="formula">F = B × I × L</span>
+          </div>
+          <p>Où :</p>
+          <ul>
+            <li><strong>F</strong> = force en Newtons (N)</li>
+            <li><strong>B</strong> = champ magnétique en Tesla (T)</li>
+            <li><strong>I</strong> = courant en Ampères (A)</li>
+            <li><strong>L</strong> = longueur du conducteur en mètres (m)</li>
+          </ul>
+          <div class="analogy-box">
+            <h4>🧲 La règle des trois doigts</h4>
+            <p>Tendez la main gauche : le <strong>pouce</strong> pointe dans le sens du courant, l'<strong>index</strong> dans le sens du champ magnétique (N→S), le <strong>majeur</strong> indique la direction de la force.</p>
+          </div>
+          <p class="info-tip">🔄 L'inverse est aussi vrai : si on impose le mouvement, un courant est généré (c'est le principe du générateur — loi de Lenz-Faraday).</p>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Le moteur à courant continu (DC)",
+        content: `
+          <p>Le <strong>moteur DC</strong> est le plus simple à comprendre. Il transforme le courant continu en rotation.</p>
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">🧲</span>
+              <div><strong>Stator</strong><p>Partie fixe. Génère le champ magnétique (aimants permanents ou électro-aimants — inducteur).</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🔄</span>
+              <div><strong>Rotor (armature)</strong><p>Partie tournante. Bobinage parcouru par le courant. Subit la force de Laplace.</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">⚡</span>
+              <div><strong>Collecteur / balais</strong><p>Inversent le courant à chaque demi-tour pour que la force reste toujours dans le même sens de rotation.</p></div>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="col-card good">
+              <h4>✅ Avantages DC</h4>
+              <ul><li>Contrôle de vitesse simple</li><li>Fort couple au démarrage</li><li>Bon rendement à faible vitesse</li></ul>
+            </div>
+            <div class="col-card bad">
+              <h4>⚠️ Inconvénients DC</h4>
+              <ul><li>Balais s'usent (maintenance)</li><li>Génèrent des étincelles</li><li>Moins robuste que le moteur AC</li></ul>
+            </div>
+          </div>
+          <p class="info-tip">🚗 Les moteurs DC sont très utilisés dans les voitures électriques (avec variation de vitesse électronique), les jouets, les perceuses sans fil.</p>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Le moteur à induction (AC)",
+        content: `
+          <p>Le <strong>moteur à induction</strong> (ou moteur asynchrone) est le moteur le plus répandu dans l'industrie. Il fonctionne en courant alternatif et n'a <strong>pas de contact glissant</strong>.</p>
+          <div class="analogy-box">
+            <h4>⚙️ Principe</h4>
+            <p>Le courant alternatif dans le stator crée un <strong>champ magnétique tournant</strong>. Ce champ induit des courants dans le rotor (en cage d'écureuil), qui crée à son tour un champ magnétique. Les deux champs s'attirent, entraînant la rotation.</p>
+          </div>
+          <div class="rules-box">
+            <h4>📋 Caractéristiques clés</h4>
+            <ul>
+              <li><strong>Vitesse synchrone :</strong> Ns = 60 × f / p (f = fréquence, p = nb de paires de pôles)</li>
+              <li><strong>Glissement :</strong> le rotor tourne légèrement moins vite que le champ (3 à 5%)</li>
+              <li><strong>Exemple :</strong> moteur 2 pôles à 50 Hz → Ns = 3000 tr/min, rotor ≈ 2850 tr/min</li>
+            </ul>
+          </div>
+          <div class="examples-grid">
+            <div class="example-item"><span class="ex-val">🏭</span><span class="ex-label">Pompes industrielles</span></div>
+            <div class="example-item"><span class="ex-val">❄️</span><span class="ex-label">Climatiseurs</span></div>
+            <div class="example-item"><span class="ex-val">🌀</span><span class="ex-label">Ventilateurs</span></div>
+            <div class="example-item"><span class="ex-val">🚂</span><span class="ex-label">Trains (TGV)</span></div>
+          </div>
+        `
+      },
+      {
+        type: "lesson",
+        title: "L'alternateur et la dynamo",
+        content: `
+          <p>Un <strong>générateur</strong> fait l'inverse d'un moteur : il convertit l'énergie mécanique en énergie électrique.</p>
+          <div class="two-col">
+            <div class="col-card">
+              <h4>⚡ Alternateur (AC)</h4>
+              <p>Produit du courant alternatif. Un rotor magnétique tournant induit une tension sinusoïdale dans les bobines du stator.</p>
+              <p><strong>Exemples :</strong> centrales électriques, alternateur de voiture, éoliennes.</p>
+            </div>
+            <div class="col-card">
+              <h4>🔋 Dynamo (DC)</h4>
+              <p>Produit du courant continu grâce à un collecteur. Même principe que l'alternateur mais avec redressement mécanique.</p>
+              <p><strong>Exemples :</strong> ancienne dynamo de vélo, certains générateurs portables.</p>
+            </div>
+          </div>
+          <div class="example-calc">
+            <p><strong>Centrale nucléaire :</strong> La chaleur → vapeur → turbine à ~3000 tr/min → alternateur → 20 000 V → transformateur → 400 000 V pour le réseau.</p>
+          </div>
+          <p class="info-tip">🌬️ Les éoliennes modernes utilisent des alternateurs à aimants permanents qui peuvent fonctionner à basse vitesse (pas besoin de multiplicateur de vitesse).</p>
+        `
+      }
+    ],
+    quiz: [
+      {
+        q: "Quel est le principe de base d'un moteur électrique ?",
+        choices: ["L'effet Joule", "La force de Laplace (courant dans champ magnétique)", "L'induction de Faraday seule", "L'effet piezoélectrique"],
+        answer: 1,
+        explanation: "Un moteur exploite la force de Laplace : F = B × I × L. Un conducteur parcouru par un courant dans un champ magnétique subit une force mécanique."
+      },
+      {
+        q: "À quelle vitesse synchrone tourne un moteur AC 4 pôles (2 paires de pôles) à 50 Hz ?",
+        choices: ["3000 tr/min", "1500 tr/min", "750 tr/min", "6000 tr/min"],
+        answer: 1,
+        explanation: "Ns = 60 × f / p = 60 × 50 / 2 = 1500 tr/min. Avec 2 paires de pôles, la vitesse synchrone est divisée par 2."
+      },
+      {
+        q: "Pourquoi le moteur à induction est-il préféré dans l'industrie par rapport au moteur DC ?",
+        choices: ["Il est plus rapide", "Il n'a pas de balais (pas de maintenance, très robuste)", "Il consomme moins à puissance égale", "Il peut fonctionner en DC"],
+        answer: 1,
+        explanation: "Le moteur à induction n'a pas de contacts glissants (balais/collecteur), il est donc beaucoup plus robuste, fiable et nécessite peu de maintenance."
+      },
+      {
+        q: "Qu'est-ce qu'un alternateur ?",
+        choices: ["Un moteur AC", "Un transformateur de courant", "Un générateur de courant alternatif", "Un redresseur de tension"],
+        answer: 2,
+        explanation: "Un alternateur convertit l'énergie mécanique en énergie électrique AC. C'est ce qu'on trouve dans les centrales électriques et les voitures."
+      },
+      {
+        q: "Dans une centrale nucléaire, dans quel ordre se fait la conversion d'énergie ?",
+        choices: ["Électrique → Thermique → Mécanique", "Nucléaire → Thermique → Mécanique → Électrique", "Mécanique → Nucléaire → Électrique", "Chimique → Électrique → Mécanique"],
+        answer: 1,
+        explanation: "Fission nucléaire → chaleur → vapeur (thermique) → turbine (mécanique) → alternateur (électrique). C'est une longue chaîne de conversions."
+      }
+    ]
+  },
+
+  {
+    id: 10,
+    icon: "📏",
+    title: "Mesures et instrumentation",
+    subtitle: "Utiliser correctement le multimètre et l'oscilloscope",
+    steps: [
+      {
+        type: "lesson",
+        title: "Le multimètre",
+        content: `
+          <p>Le <strong>multimètre</strong> (ou contrôleur universel) est l'outil indispensable de tout électricien ou électronicien. Il mesure tension, courant, résistance et plus encore.</p>
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">🔴</span>
+              <div><strong>Fil rouge → Borne V/Ω</strong><p>Pour les mesures de tension et résistance. Toujours branché sur "V Ω mA" sauf mesures de fort courant.</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">⚫</span>
+              <div><strong>Fil noir → Borne COM</strong><p>Référence commune (masse). Toujours branché sur "COM".</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🟡</span>
+              <div><strong>Borne 10A (ou 20A)</strong><p>Pour mesurer des forts courants uniquement. Jamais de tension avec ce port !</p></div>
+            </div>
+          </div>
+          <div class="rules-box">
+            <h4>📋 Comment mesurer la tension ?</h4>
+            <ul>
+              <li>Sélectionner DC (⎓) ou AC (~) selon la source</li>
+              <li>Choisir une plage supérieure à la tension attendue</li>
+              <li>Brancher en <strong>parallèle</strong> avec le composant</li>
+              <li>Lire la valeur affichée</li>
+            </ul>
+          </div>
+          <p class="info-tip">⚠️ La mesure de courant se fait en SÉRIE, ce qui impose d'ouvrir le circuit. Erreur classique : brancher l'ampèremètre en parallèle = court-circuit immédiat !</p>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Mesures avec le multimètre",
+        content: `
+          <div class="two-col">
+            <div class="col-card">
+              <h4>🔌 Mesure de tension (V)</h4>
+              <ul>
+                <li>Fils sur V/Ω et COM</li>
+                <li>Branché en <strong>parallèle</strong></li>
+                <li>Très haute résistance interne (MΩ) → n'influence pas le circuit</li>
+              </ul>
+            </div>
+            <div class="col-card">
+              <h4>⚡ Mesure de courant (A)</h4>
+              <ul>
+                <li>Fils sur A et COM</li>
+                <li>Branché en <strong>série</strong></li>
+                <li>Très faible résistance interne (mΩ) → n'influence pas le circuit</li>
+              </ul>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="col-card">
+              <h4>🔶 Mesure de résistance (Ω)</h4>
+              <ul>
+                <li>Fils sur V/Ω et COM</li>
+                <li>Composant <strong>hors circuit</strong> obligatoirement</li>
+                <li>Le multimètre envoie un petit courant de test</li>
+              </ul>
+            </div>
+            <div class="col-card">
+              <h4>🔔 Continuité / diode</h4>
+              <ul>
+                <li>Mode bip : sonne si résistance &lt; ~50 Ω</li>
+                <li>Vérifie qu'un fil est bien conducteur</li>
+                <li>Teste le sens d'une diode</li>
+              </ul>
+            </div>
+          </div>
+          <div class="example-calc">
+            <p><strong>Astuce :</strong> Toujours partir de la plage la plus haute et descendre. Si l'afficheur montre "1" ou "OL" (overload), augmentez la plage.</p>
+          </div>
+        `
+      },
+      {
+        type: "lesson",
+        title: "L'oscilloscope",
+        content: `
+          <p>L'<strong>oscilloscope</strong> affiche l'évolution de la tension au cours du temps. Il permet de "voir" les signaux électriques.</p>
+          <div class="rules-box">
+            <h4>📋 Les réglages principaux</h4>
+            <ul>
+              <li><strong>Axe Y (vertical) :</strong> tension, en V/div. Règle l'amplitude du signal.</li>
+              <li><strong>Axe X (horizontal) :</strong> temps, en ms/div ou µs/div. Règle la base de temps.</li>
+              <li><strong>Trigger :</strong> synchronise l'affichage pour stabiliser la courbe.</li>
+              <li><strong>Sonde (×1 / ×10) :</strong> atténue le signal pour mesurer des hautes tensions.</li>
+            </ul>
+          </div>
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">📊</span>
+              <div><strong>Mesurer une fréquence</strong><p>Compter le nombre de divisions pour une période complète × la base de temps. f = 1/T.</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">📐</span>
+              <div><strong>Mesurer une tension crête</strong><p>Mesurer la hauteur du signal en divisions × la valeur V/div.</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">⏱</span>
+              <div><strong>Mesurer un déphasage</strong><p>Comparer deux signaux sur deux voies : le décalage temporel indique le déphasage en degrés.</p></div>
+            </div>
+          </div>
+          <p class="info-tip">💻 Il existe des oscilloscopes logiciels (PC + interface USB) très accessibles pour débuter, suffisants pour la plupart des besoins en électronique.</p>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Autres instruments de mesure",
+        content: `
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">🔧</span>
+              <div>
+                <strong>Pince ampèremétrique</strong>
+                <p>Mesure le courant AC sans ouvrir le circuit : on "pince" le fil. Indispensable pour les forts courants et les installations existantes.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🌡️</span>
+              <div>
+                <strong>Wattmètre</strong>
+                <p>Mesure directement la puissance active (W) et parfois la puissance réactive (VAR). Utile pour l'analyse de consommation.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🔍</span>
+              <div>
+                <strong>LCRmètre</strong>
+                <p>Mesure précisément les inductances (L), condensateurs (C) et résistances (R). Idéal pour vérifier des composants électroniques.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🏠</span>
+              <div>
+                <strong>Vérificateur de tension (VAT)</strong>
+                <p>Stylo ou tournevis testeur qui s'illumine/bipe en présence de tension. Indispensable avant toute intervention électrique.</p>
+              </div>
+            </div>
+          </div>
+        `
+      }
+    ],
+    quiz: [
+      {
+        q: "Comment doit-on brancher un voltmètre pour mesurer la tension aux bornes d'une résistance ?",
+        choices: ["En série", "En parallèle", "Hors circuit", "N'importe comment"],
+        answer: 1,
+        explanation: "Le voltmètre (et le multimètre en mode tension) se branche en PARALLÈLE avec le composant. Sa très haute résistance interne (MΩ) évite de perturber le circuit."
+      },
+      {
+        q: "Que se passe-t-il si on branche un ampèremètre en parallèle à la place d'en série ?",
+        choices: ["Il mesure double", "Court-circuit immédiat (sa résistance est quasi nulle)", "Il grille la résistance", "Rien de spécial"],
+        answer: 1,
+        explanation: "L'ampèremètre a une résistance interne très faible (quelques mΩ). Branché en parallèle, il court-circuite le composant, provoquant un fort courant qui peut griller le fusible de protection ou le composant."
+      },
+      {
+        q: "Sur l'oscilloscope, si la base de temps est réglée à 2 ms/div et qu'une période complète occupe 5 divisions, quelle est la fréquence ?",
+        choices: ["5 Hz", "10 Hz", "100 Hz", "200 Hz"],
+        answer: 2,
+        explanation: "T = 5 div × 2 ms/div = 10 ms = 0,01 s. f = 1/T = 1/0,01 = 100 Hz."
+      },
+      {
+        q: "Pour mesurer une résistance avec un multimètre, le composant doit être :",
+        choices: ["Alimenté normalement", "Sous une tension de référence", "Hors circuit (non alimenté)", "En court-circuit"],
+        answer: 2,
+        explanation: "La mesure de résistance se fait hors circuit et sans alimentation. Le multimètre envoie son propre courant de test ; une tension extérieure fausserait la mesure ou endommagerait l'appareil."
+      },
+      {
+        q: "La pince ampèremétrique permet de mesurer le courant :",
+        choices: ["Sans ouvrir le circuit, en entourant le fil", "En coupant le fil et en insérant la pince", "En parallèle seulement", "Uniquement en DC"],
+        answer: 0,
+        explanation: "La pince ampèremétrique détecte le champ magnétique créé par le courant dans le fil. On 'pince' le fil sans le couper ni ouvrir le circuit — parfait pour les mesures en situation réelle."
+      }
+    ]
+  },
+
+  {
+    id: 11,
+    icon: "🏠",
+    title: "Installation électrique domestique",
+    subtitle: "Comprendre le câblage d'une maison",
+    steps: [
+      {
+        type: "lesson",
+        title: "Les fils et leur code couleur",
+        content: `
+          <p>Dans une installation électrique française, chaque fil a une couleur normalisée (norme NF C 15-100) :</p>
+          <div class="recap-table">
+            <div class="recap-row recap-header">
+              <span>Couleur</span><span>Rôle</span><span>Symbole</span><span>Tension/Courant</span>
+            </div>
+            <div class="recap-row">
+              <span><strong style="color:#ef4444">Rouge / Brun</strong></span><span>Phase (L)</span><span>L</span><span>230 V par rapport au neutre</span>
+            </div>
+            <div class="recap-row">
+              <span><strong style="color:#9aa3c2">Bleu</strong></span><span>Neutre (N)</span><span>N</span><span>0 V de référence</span>
+            </div>
+            <div class="recap-row">
+              <span><strong style="color:#22c55e">Vert/Jaune</strong></span><span>Terre (PE)</span><span>⏚</span><span>Sécurité, pas de courant normal</span>
+            </div>
+            <div class="recap-row">
+              <span><strong style="color:#f59e0b">Noir / Gris</strong></span><span>Autres phases (3φ)</span><span>L2/L3</span><span>400 V entre phases</span>
+            </div>
+          </div>
+          <div class="analogy-box">
+            <h4>⚡ Phase vs Neutre</h4>
+            <p>La <strong>phase</strong> est le fil "sous tension" (dangereux). Le <strong>neutre</strong> est le fil de retour (en théorie à 0 V). Le courant circule de la phase vers les appareils et revient par le neutre. La terre est là uniquement en cas de défaut.</p>
+          </div>
+          <p class="info-tip">🔴 Le fil de phase est LE fil dangereux. Toucher la phase à mains nues et être en contact avec la terre = électrocution. Toujours vérifier avec un VAT.</p>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Le tableau électrique",
+        content: `
+          <p>Le <strong>tableau de distribution</strong> (ou tableau électrique) est le centre névralgique de l'installation. Il regroupe toutes les protections.</p>
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">🔲</span>
+              <div>
+                <strong>Disjoncteur général (AGCP)</strong>
+                <p>Coupe toute l'installation. Calibré selon le contrat EDF (ex: 60 A triphasé). C'est lui qu'on trouve en bas ou en entrée de tableau.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🏠</span>
+              <div>
+                <strong>Interrupteur différentiel (DDR 30 mA)</strong>
+                <p>Protège contre l'électrocution. Un par groupe de circuits. Déclenche si une fuite ≥ 30 mA est détectée.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">🔌</span>
+              <div>
+                <strong>Disjoncteurs de circuit</strong>
+                <p>Un par circuit : éclairage 10 A, prises 16 A ou 20 A, four 32 A, lave-linge 20 A… Protègent contre les surcharges et courts-circuits.</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">📊</span>
+              <div>
+                <strong>Compteur Linky</strong>
+                <p>Mesure la consommation (kWh), transmet les données à distance, permet de modifier les options tarifaires sans déplacement.</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Les circuits domestiques",
+        content: `
+          <p>La norme NF C 15-100 définit comment doivent être organisés les circuits dans une maison :</p>
+          <div class="examples-grid">
+            <div class="example-item"><span class="ex-val">10 A</span><span class="ex-label">Éclairage (1,5 mm²)</span></div>
+            <div class="example-item"><span class="ex-val">16 A</span><span class="ex-label">Prises (2,5 mm²)</span></div>
+            <div class="example-item"><span class="ex-val">20 A</span><span class="ex-label">Lave-linge (2,5 mm²)</span></div>
+            <div class="example-item"><span class="ex-val">32 A</span><span class="ex-label">Four / plaque (6 mm²)</span></div>
+            <div class="example-item"><span class="ex-val">20-32 A</span><span class="ex-label">Chauffe-eau (2,5-6 mm²)</span></div>
+            <div class="example-item"><span class="ex-val">32 A</span><span class="ex-label">Borne VE (6 mm²)</span></div>
+          </div>
+          <div class="rules-box">
+            <h4>📋 Règles importantes NF C 15-100</h4>
+            <ul>
+              <li>Max <strong>8 points de lumière</strong> par circuit éclairage</li>
+              <li>Max <strong>8 prises</strong> par circuit 16 A</li>
+              <li>La salle de bain est divisée en <strong>volumes de protection</strong> (0, 1, 2)</li>
+              <li>Le câble doit être dimensionné pour le disjoncteur : 1,5 mm² ↔ 10 A, 2,5 mm² ↔ 16-20 A, 6 mm² ↔ 32 A</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Câblage d'un interrupteur et d'une prise",
+        content: `
+          <p>Comprendre le câblage de base permet de réaliser soi-même de petits travaux (avec coupure de courant obligatoire !).</p>
+          <div class="steps-numbered">
+            <div class="step-n">
+              <span class="step-num">1</span>
+              <div><strong>Prise 2P+T (avec terre)</strong><p>3 fils : Phase (brun/rouge) → borne L, Neutre (bleu) → borne N, Terre (vert/jaune) → borne ⏚. La terre est la broche ronde centrale.</p></div>
+            </div>
+            <div class="step-n">
+              <span class="step-num">2</span>
+              <div><strong>Interrupteur simple</strong><p>L'interrupteur coupe toujours la <strong>phase</strong>, jamais le neutre. Câble arrivée : phase + neutre. Départ luminaire : phase commutée + neutre (direct).</p></div>
+            </div>
+            <div class="step-n">
+              <span class="step-num">3</span>
+              <div><strong>Va-et-vient (2 interrupteurs)</strong><p>Permet de commander un éclairage depuis 2 endroits. Nécessite un câble 3 fils (+ navettes) entre les deux interrupteurs.</p></div>
+            </div>
+          </div>
+          <div class="danger-banner">
+            ⚠️ Tout travail sur le tableau électrique doit être confié à un électricien qualifié. Pour les prises et interrupteurs : coupez le disjoncteur ET vérifiez l'absence de tension.
+          </div>
+        `
+      }
+    ],
+    quiz: [
+      {
+        q: "De quelle couleur est le fil de phase dans une installation électrique française ?",
+        choices: ["Bleu", "Vert/jaune", "Brun ou rouge", "Noir uniquement"],
+        answer: 2,
+        explanation: "Le fil de phase est brun (norme récente) ou rouge (ancienne norme). Le bleu est le neutre, vert/jaune est la terre."
+      },
+      {
+        q: "À quoi sert l'interrupteur différentiel 30 mA dans un tableau électrique ?",
+        choices: ["À protéger contre les surcharges des câbles", "À protéger les personnes contre l'électrocution", "À mesurer la consommation", "À couper toute l'installation"],
+        answer: 1,
+        explanation: "Le DDR 30 mA détecte les courants de fuite et coupe en moins de 30 ms. Il protège spécifiquement contre l'électrocution (les 30 mA sont en dessous du seuil mortel)."
+      },
+      {
+        q: "Quelle section de câble doit-on utiliser pour un circuit prise 16 A ?",
+        choices: ["0,75 mm²", "1,5 mm²", "2,5 mm²", "6 mm²"],
+        answer: 2,
+        explanation: "La norme NF C 15-100 impose : 1,5 mm² pour 10 A (éclairage), 2,5 mm² pour 16-20 A (prises), 6 mm² pour 32 A (four, borne VE)."
+      },
+      {
+        q: "Un interrupteur doit toujours couper :",
+        choices: ["Le neutre", "La terre", "La phase", "Les trois fils en même temps"],
+        answer: 2,
+        explanation: "L'interrupteur coupe TOUJOURS la phase. Si on coupait le neutre, l'appareil resterait sous tension (la phase toujours présente) — dangereux."
+      },
+      {
+        q: "Combien de prises peut-on connecter au maximum sur un circuit 16 A (norme NF C 15-100) ?",
+        choices: ["4 prises", "8 prises", "12 prises", "Illimité"],
+        answer: 1,
+        explanation: "La norme NF C 15-100 limite à 8 prises maximum par circuit 16 A avec câble 2,5 mm². Au-delà, il faut créer un nouveau circuit."
+      }
+    ]
+  },
+
+  {
+    id: 12,
+    icon: "🌱",
+    title: "Énergies renouvelables & stockage",
+    subtitle: "Solaire, éolien, batteries — l'électricité de demain",
+    steps: [
+      {
+        type: "lesson",
+        title: "Le panneau solaire photovoltaïque",
+        content: `
+          <p>Un <strong>panneau solaire photovoltaïque</strong> convertit la lumière (photons) directement en électricité grâce à l'<strong>effet photoélectrique</strong>.</p>
+          <div class="analogy-box">
+            <h4>☀️ Principe de l'effet PV</h4>
+            <p>Quand un photon frappe une cellule en silicium, il libère un électron. En associant des couches de silicium dopé P et N, on crée un champ électrique qui oriente les électrons dans un seul sens → courant continu.</p>
+          </div>
+          <div class="examples-grid">
+            <div class="example-item"><span class="ex-val">~400 Wc</span><span class="ex-label">Puissance crête d'un panneau standard</span></div>
+            <div class="example-item"><span class="ex-val">18-22%</span><span class="ex-label">Rendement typique</span></div>
+            <div class="example-item"><span class="ex-val">30-40 V</span><span class="ex-label">Tension en circuit ouvert</span></div>
+            <div class="example-item"><span class="ex-val">25 ans</span><span class="ex-label">Durée de vie garantie</span></div>
+          </div>
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">⚡</span>
+              <div><strong>Onduleur (inverter)</strong><p>Convertit le DC des panneaux en AC 230 V compatible réseau. C'est le cerveau de l'installation PV.</p></div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">📊</span>
+              <div><strong>MPPT (Maximum Power Point Tracking)</strong><p>Algorithme dans l'onduleur qui optimise en permanence le point de fonctionnement pour extraire le maximum de puissance.</p></div>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "lesson",
+        title: "L'éolienne",
+        content: `
+          <p>Une <strong>éolienne</strong> convertit l'énergie cinétique du vent en électricité via une turbine et un générateur.</p>
+          <div class="formula-box">
+            <span class="formula">P = ½ × ρ × A × v³ × Cp</span>
+          </div>
+          <p>La puissance est proportionnelle au <strong>cube de la vitesse du vent</strong> : doubler la vitesse → multiplier la puissance par 8 !</p>
+          <div class="two-col">
+            <div class="col-card">
+              <h4>🌬️ Éoliennes terrestres</h4>
+              <ul>
+                <li>2 à 6 MW par machine</li>
+                <li>Hub à 80-120 m de hauteur</li>
+                <li>Rotors de 80-150 m de diamètre</li>
+                <li>Coût : ~1,2 M€/MW</li>
+              </ul>
+            </div>
+            <div class="col-card">
+              <h4>🌊 Éoliennes offshore</h4>
+              <ul>
+                <li>8 à 15+ MW par machine</li>
+                <li>Vents plus forts et réguliers</li>
+                <li>Coût plus élevé mais productivité supérieure</li>
+                <li>En plein développement en France</li>
+              </ul>
+            </div>
+          </div>
+          <p class="info-tip">🔄 La puissance maximale théoriquement extractible du vent est de 59,3% (limite de Betz). Les éoliennes modernes atteignent 40-50% de rendement réel.</p>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Les batteries et le stockage",
+        content: `
+          <p>Le <strong>stockage d'énergie</strong> est le défi majeur des énergies renouvelables (production variable → besoin de stocker les surplus).</p>
+          <div class="limits-list">
+            <div class="limit-item">
+              <span class="limit-icon">🔋</span>
+              <div>
+                <strong>Batteries lithium-ion (Li-ion)</strong>
+                <p>La technologie dominante. Haute densité d'énergie, longue durée de vie (2000+ cycles). Utilisées dans les voitures électriques (Tesla, etc.) et les systèmes résidentiels (Powerwall).</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">💧</span>
+              <div>
+                <strong>STEP (Station de Transfert d'Énergie par Pompage)</strong>
+                <p>Pompe de l'eau en hauteur quand il y a excès d'électricité, la turbine quand on en a besoin. Le principal stockage à grande échelle en France (7 GW installés).</p>
+              </div>
+            </div>
+            <div class="limit-item">
+              <span class="limit-icon">💨</span>
+              <div>
+                <strong>Hydrogène vert (H₂)</strong>
+                <p>Électrolyse de l'eau avec du courant renouvelable → H₂ stocké → reconverti en électricité via pile à combustible. Prometteuse mais rendement global ~30-40%.</p>
+              </div>
+            </div>
+          </div>
+          <div class="example-calc">
+            <p><strong>Exemple installation solaire résidentielle :</strong></p>
+            <p>6 panneaux × 400 Wc = 2 400 Wc · Production annuelle (région parisienne) ≈ 2400 × 1000 h = <strong>2 400 kWh/an</strong></p>
+            <p>Consommation moyenne française : ~4 500 kWh/an → couvre ~53%</p>
+          </div>
+        `
+      },
+      {
+        type: "lesson",
+        title: "Bilan énergétique et mix électrique",
+        content: `
+          <p>La <strong>transition énergétique</strong> implique de comprendre comment l'électricité est produite et transportée à l'échelle nationale.</p>
+          <div class="recap-table">
+            <div class="recap-row recap-header">
+              <span>Source</span><span>Part France (2024)</span><span>Type</span><span>Émissions CO₂</span>
+            </div>
+            <div class="recap-row">
+              <span>Nucléaire</span><span>~70%</span><span>Pilotable</span><span>Très faibles</span>
+            </div>
+            <div class="recap-row">
+              <span>Hydraulique</span><span>~12%</span><span>Semi-pilotable</span><span>Très faibles</span>
+            </div>
+            <div class="recap-row">
+              <span>Éolien</span><span>~10%</span><span>Intermittent</span><span>Très faibles</span>
+            </div>
+            <div class="recap-row">
+              <span>Solaire</span><span>~5%</span><span>Intermittent</span><span>Très faibles</span>
+            </div>
+            <div class="recap-row">
+              <span>Thermique</span><span>~3%</span><span>Pilotable</span><span>Élevées</span>
+            </div>
+          </div>
+          <p class="info-tip">🌍 La France a l'une des électricités les plus décarbonées d'Europe grâce au nucléaire et à l'hydraulique. L'empreinte carbone du kWh français est ~50 g CO₂/kWh vs ~400 g en Allemagne.</p>
+        `
+      }
+    ],
+    quiz: [
+      {
+        q: "Un panneau solaire photovoltaïque produit quel type de courant ?",
+        choices: ["Courant alternatif (AC)", "Courant continu (DC)", "Les deux selon l'ensoleillement", "Courant pulsé"],
+        answer: 1,
+        explanation: "Un panneau PV produit du courant continu (DC). L'onduleur est nécessaire pour le convertir en AC 230V utilisable dans la maison ou injectab en réseau."
+      },
+      {
+        q: "Si la vitesse du vent double, la puissance d'une éolienne est multipliée par :",
+        choices: ["2", "4", "8", "16"],
+        answer: 2,
+        explanation: "La puissance est proportionnelle à v³ (cube de la vitesse). Si v double : P × 2³ = 8. C'est pourquoi l'emplacement d'une éolienne est crucial."
+      },
+      {
+        q: "Quel est le principal mode de stockage d'énergie à grande échelle en France ?",
+        choices: ["Batteries lithium-ion", "Hydrogène vert", "STEP (pompage-turbinage)", "Volants d'inertie"],
+        answer: 2,
+        explanation: "Les STEP (Stations de Transfert d'Énergie par Pompage) représentent ~7 GW en France, largement devant les batteries. On pompe l'eau en hauteur et on turbine à la demande."
+      },
+      {
+        q: "Quelle est la part approximative du nucléaire dans la production électrique française ?",
+        choices: ["30%", "50%", "70%", "90%"],
+        answer: 2,
+        explanation: "Le nucléaire représente environ 70% de la production électrique française, ce qui explique le faible contenu carbone de l'électricité française (~50 g CO₂/kWh)."
+      },
+      {
+        q: "Le MPPT dans un onduleur solaire sert à :",
+        choices: ["Mesurer la production en kWh", "Optimiser en permanence la puissance extraite des panneaux", "Protéger contre la foudre", "Réguler la tension de sortie à 230V"],
+        answer: 1,
+        explanation: "Le MPPT (Maximum Power Point Tracking) adapte continuellement le point de fonctionnement électrique des panneaux pour en tirer la puissance maximale, quelle que soit l'irradiation solaire."
+      }
+    ]
   }
 ];
