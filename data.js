@@ -1928,3 +1928,43 @@ const MODULES = [
     ]
   }
 ];
+
+// ===== GLOSSAIRE =====
+const GLOSSARY = [
+  { term: "Tension (U)", unit: "Volt (V)", def: "Différence de potentiel électrique entre deux points. C'est la « pression » qui pousse les électrons dans le circuit. Se mesure avec un voltmètre branché en parallèle." },
+  { term: "Courant (I)", unit: "Ampère (A)", def: "Débit de charges électriques dans un conducteur. Se mesure avec un ampèremètre branché en série." },
+  { term: "Résistance (R)", unit: "Ohm (Ω)", def: "Opposition d'un matériau au passage du courant électrique. Se mesure hors circuit avec un ohmmètre." },
+  { term: "Loi d'Ohm", unit: "U = R × I", def: "Loi fondamentale reliant tension, résistance et courant dans un composant ohmique." },
+  { term: "Puissance (P)", unit: "Watt (W)", def: "Énergie consommée ou produite par seconde. P = U × I = R × I² = U²/R." },
+  { term: "Énergie (E)", unit: "Joule (J) / kWh", def: "Puissance multipliée par le temps : E = P × t. Facturée en kilowattheures (1 kWh = 3,6 millions de joules)." },
+  { term: "Effet Joule", unit: "P = R × I²", def: "Transformation de l'énergie électrique en chaleur quand un courant traverse une résistance. Utile (radiateur) ou nuisible (pertes en ligne)." },
+  { term: "Courant continu (DC)", unit: "—", def: "Courant qui circule toujours dans le même sens (piles, batteries, panneaux solaires, électronique)." },
+  { term: "Courant alternatif (AC)", unit: "—", def: "Courant qui change périodiquement de sens. Le secteur français est en 230 V / 50 Hz." },
+  { term: "Fréquence (f)", unit: "Hertz (Hz)", def: "Nombre de cycles par seconde d'un signal alternatif. 50 Hz en Europe, 60 Hz aux USA. f = 1/T." },
+  { term: "Tension efficace (RMS)", unit: "Volt (V)", def: "Tension continue équivalente qui produirait le même effet thermique. V_eff = V_max / √2. Les 230 V du secteur sont une valeur efficace." },
+  { term: "Circuit série", unit: "—", def: "Composants connectés bout à bout : courant identique partout, tensions et résistances s'additionnent." },
+  { term: "Circuit parallèle", unit: "—", def: "Composants entre les deux mêmes points : tension identique, courants s'additionnent, résistance équivalente diminue." },
+  { term: "Loi des nœuds", unit: "ΣI = 0", def: "1ère loi de Kirchhoff : en un nœud, la somme des courants entrants égale la somme des courants sortants." },
+  { term: "Loi des mailles", unit: "ΣU = 0", def: "2ème loi de Kirchhoff : dans une boucle fermée, la somme algébrique des tensions est nulle." },
+  { term: "Condensateur (C)", unit: "Farad (F)", def: "Composant qui stocke l'énergie sous forme de champ électrique. Bloque le DC, laisse passer l'AC. Q = C × U." },
+  { term: "Bobine / Inductance (L)", unit: "Henry (H)", def: "Composant qui stocke l'énergie sous forme de champ magnétique. Laisse passer le DC, s'oppose à l'AC haute fréquence." },
+  { term: "Diode", unit: "—", def: "Composant qui ne laisse passer le courant que dans un sens. Seuil ≈ 0,7 V (silicium)." },
+  { term: "LED", unit: "—", def: "Diode électroluminescente : émet de la lumière quand elle conduit. Toujours l'associer à une résistance série." },
+  { term: "Transformateur", unit: "U₁/U₂ = N₁/N₂", def: "Machine statique qui change la tension AC par induction électromagnétique. Rendement 97–99,5 %." },
+  { term: "Force de Laplace", unit: "F = B × I × L", def: "Force subie par un conducteur parcouru par un courant dans un champ magnétique. Principe de base du moteur électrique." },
+  { term: "Alternateur", unit: "—", def: "Générateur qui convertit l'énergie mécanique en électricité alternative (centrales, voitures, éoliennes)." },
+  { term: "Moteur asynchrone", unit: "Ns = 60f/p", def: "Moteur AC à induction, sans balais, le plus répandu dans l'industrie. Le rotor tourne un peu moins vite que le champ tournant (glissement)." },
+  { term: "Multimètre", unit: "—", def: "Instrument mesurant tension (parallèle), courant (série), résistance (hors circuit) et continuité." },
+  { term: "Oscilloscope", unit: "—", def: "Instrument affichant la tension en fonction du temps. Permet de mesurer amplitude, période, fréquence et déphasage." },
+  { term: "Phase (L)", unit: "fil brun/rouge", def: "Conducteur sous tension (230 V par rapport au neutre). C'est le fil dangereux." },
+  { term: "Neutre (N)", unit: "fil bleu", def: "Conducteur de retour du courant, au potentiel proche de 0 V." },
+  { term: "Terre (PE)", unit: "fil vert/jaune", def: "Conducteur de protection reliant les masses métalliques à la terre. Ne transporte du courant qu'en cas de défaut." },
+  { term: "Disjoncteur", unit: "—", def: "Protection qui coupe le circuit en cas de surcharge ou court-circuit. Protège l'installation contre l'incendie." },
+  { term: "Différentiel (DDR)", unit: "30 mA", def: "Protection qui détecte les fuites de courant à la terre et coupe en moins de 30 ms. Protège les personnes contre l'électrocution." },
+  { term: "NF C 15-100", unit: "—", def: "Norme française régissant les installations électriques basse tension des bâtiments d'habitation." },
+  { term: "Onduleur", unit: "—", def: "Convertisseur DC → AC. Indispensable pour injecter la production solaire sur le réseau 230 V." },
+  { term: "MPPT", unit: "—", def: "Maximum Power Point Tracking : algorithme qui optimise en permanence la puissance extraite d'un panneau solaire." },
+  { term: "kWh", unit: "kilowattheure", def: "Unité d'énergie de facturation : 1 000 W consommés pendant 1 heure. 1 kWh = 3 600 000 J." },
+  { term: "Court-circuit", unit: "—", def: "Contact direct entre deux points de potentiels différents avec une résistance quasi nulle : courant très élevé, échauffement violent, danger d'incendie." },
+  { term: "Impédance (Z)", unit: "Ohm (Ω)", def: "Résistance « généralisée » en courant alternatif, incluant les effets des condensateurs et bobines. Dépend de la fréquence." }
+];

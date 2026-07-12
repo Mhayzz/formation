@@ -3,90 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formation Électricité — Les Bases</title>
+  <title>ÉlecAcademy — Formation Électricité</title>
+  <meta name="description" content="Formation complète et interactive sur les bases de l'électricité : 12 modules, quiz, flashcards, suivi de progression." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ===== ÉCRAN D'ACCUEIL ===== -->
+<div class="bg-glow" aria-hidden="true"></div>
+
+<!-- ===== ACCUEIL ===== -->
 <div id="screen-home" class="screen active">
   <header class="hero">
-    <div class="hero-icon">⚡</div>
-    <h1>Formation Électricité</h1>
-    <p class="hero-sub">Maîtrisez les bases de l'électricité, de zéro à l'expert.</p>
-    <div class="hero-stats" id="hero-stats"></div>
-    <button class="btn-primary" onclick="goToDashboard()">Commencer la formation</button>
-  </header>
-  <section class="overview">
-    <h2>Ce que vous allez apprendre</h2>
-    <div class="overview-grid">
-      <div class="overview-card">
-        <span class="ov-icon">🔋</span>
-        <h3>Les grandeurs électriques</h3>
-        <p>Tension, courant, résistance — comprendre ce qui circule dans les fils.</p>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">⚡ ÉlecAcademy</div>
+      <h1>Maîtrisez l'électricité,<br/><span class="grad-text">de zéro à expert.</span></h1>
+      <p class="hero-sub">Une formation interactive complète : leçons progressives, quiz corrigés, flashcards de révision et suivi détaillé de votre progression.</p>
+      <div class="hero-stats" id="hero-stats"></div>
+      <div class="hero-cta">
+        <button class="btn-primary btn-lg" id="hero-cta-btn" onclick="goToDashboard()">Commencer la formation →</button>
+        <button class="btn-ghost btn-lg" onclick="goToGlossary()">📖 Glossaire</button>
       </div>
-      <div class="overview-card">
-        <span class="ov-icon">📐</span>
-        <h3>La loi d'Ohm</h3>
-        <p>La loi fondamentale qui relie toutes les grandeurs électriques.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">🔌</span>
-        <h3>Circuits série & parallèle</h3>
-        <p>Comment les composants se combinent et s'influencent mutuellement.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">💡</span>
-        <h3>Puissance & énergie</h3>
-        <p>Calculer la consommation et comprendre la facture d'électricité.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">〰️</span>
-        <h3>Courant AC vs DC</h3>
-        <p>La différence entre le courant alternatif et le courant continu.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">🛡️</span>
-        <h3>Sécurité électrique</h3>
-        <p>Les règles essentielles pour travailler sans danger.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">🔄</span>
-        <h3>Les transformateurs</h3>
-        <p>Changer la tension grâce à l'induction électromagnétique.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">⚙️</span>
-        <h3>Moteurs et générateurs</h3>
-        <p>Convertir l'énergie électrique en mécanique et vice-versa.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">📏</span>
-        <h3>Mesures & instrumentation</h3>
-        <p>Utiliser le multimètre et l'oscilloscope comme un pro.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">🏠</span>
-        <h3>Installation domestique</h3>
-        <p>Comprendre le câblage et le tableau électrique d'une maison.</p>
-      </div>
-      <div class="overview-card">
-        <span class="ov-icon">🌱</span>
-        <h3>Énergies renouvelables</h3>
-        <p>Solaire, éolien, batteries — l'électricité de demain.</p>
-      </div>
+      <div class="hero-meta" id="hero-meta"></div>
     </div>
+  </header>
+
+  <section class="overview">
+    <h2>Le programme complet</h2>
+    <p class="section-sub">12 modules progressifs, chacun avec leçons illustrées et quiz de validation.</p>
+    <div class="overview-grid" id="overview-grid"></div>
   </section>
+
+  <section class="features">
+    <div class="feature-card"><span>🎯</span><h3>Quiz corrigés</h3><p>Chaque réponse est expliquée en détail pour vraiment comprendre.</p></div>
+    <div class="feature-card"><span>🃏</span><h3>Flashcards</h3><p>Révisez les notions clés en mode cartes mémoire.</p></div>
+    <div class="feature-card"><span>📊</span><h3>Suivi complet</h3><p>XP, niveaux, badges, séries de jours et heatmap d'activité.</p></div>
+    <div class="feature-card"><span>🏆</span><h3>Certificat</h3><p>Un certificat imprimable à la fin de votre parcours.</p></div>
+  </section>
+
+  <footer class="site-footer">⚡ ÉlecAcademy — Formation aux bases de l'électricité</footer>
 </div>
 
 <!-- ===== TABLEAU DE BORD ===== -->
 <div id="screen-dashboard" class="screen">
   <nav class="topnav">
-    <button class="nav-back" onclick="goToHome()">← Accueil</button>
+    <button class="nav-back" onclick="goToHome()">←</button>
     <span class="nav-title">⚡ Ma Formation</span>
-    <button class="btn-stats-nav" onclick="goToStats()">📊 Mes stats</button>
+    <div class="nav-actions">
+      <button class="nav-chip" onclick="goToFlashcards()">🃏 Réviser</button>
+      <button class="nav-chip" onclick="goToGlossary()">📖</button>
+      <button class="nav-chip accent" onclick="goToStats()">📊 Stats</button>
+    </div>
   </nav>
   <div class="dashboard">
+    <div class="player-card" id="player-card"></div>
     <div class="progress-banner">
       <div class="progress-banner-top">
         <div>
@@ -95,37 +65,32 @@
         </div>
         <div class="global-ring-wrap">
           <svg class="global-ring" viewBox="0 0 64 64">
-            <circle cx="32" cy="32" r="26" fill="none" stroke="#2a3050" stroke-width="7"/>
+            <circle cx="32" cy="32" r="26" fill="none" stroke="var(--ring-track)" stroke-width="7"/>
             <circle id="global-ring-fill" cx="32" cy="32" r="26" fill="none" stroke="url(#ringGrad)" stroke-width="7" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="163.4" transform="rotate(-90 32 32)"/>
             <defs>
               <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="#4f8ef7"/>
-                <stop offset="100%" stop-color="#7b5cf0"/>
+                <stop offset="100%" stop-color="#a855f7"/>
               </linearGradient>
             </defs>
-            <text id="global-ring-pct" x="32" y="37" text-anchor="middle" font-size="13" font-weight="800" fill="#e8eaf0">0%</text>
+            <text id="global-ring-pct" x="32" y="37" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">0%</text>
           </svg>
         </div>
       </div>
       <div class="quick-stats-row" id="quick-stats-row"></div>
     </div>
+    <div class="search-wrap">
+      <input type="search" id="module-search" placeholder="🔍 Rechercher un module…" oninput="renderModuleList()" />
+    </div>
     <div class="modules-list" id="modules-list"></div>
   </div>
 </div>
 
-<!-- ===== STATS ===== -->
-<div id="screen-stats" class="screen">
-  <nav class="topnav">
-    <button class="nav-back" onclick="goToDashboard()">← Modules</button>
-    <span class="nav-title">📊 Mes statistiques</span>
-  </nav>
-  <div class="stats-container" id="stats-container"></div>
-</div>
-
 <!-- ===== LEÇON ===== -->
 <div id="screen-lesson" class="screen">
+  <div class="lesson-progress-top"><div id="lesson-progress-fill"></div></div>
   <nav class="topnav">
-    <button class="nav-back" onclick="goToDashboard()">← Modules</button>
+    <button class="nav-back" onclick="goToDashboard()">←</button>
     <span class="nav-title" id="lesson-nav-title"></span>
     <span class="nav-progress" id="lesson-nav-steps"></span>
   </nav>
@@ -150,8 +115,9 @@
 
 <!-- ===== QUIZ ===== -->
 <div id="screen-quiz" class="screen">
+  <div class="lesson-progress-top"><div id="quiz-progress-fill"></div></div>
   <nav class="topnav">
-    <button class="nav-back" onclick="goToDashboard()">← Modules</button>
+    <button class="nav-back" onclick="goToDashboard()">←</button>
     <span class="nav-title" id="quiz-nav-title"></span>
     <span class="nav-progress" id="quiz-nav-progress"></span>
   </nav>
@@ -161,24 +127,64 @@
   </div>
 </div>
 
+<!-- ===== FLASHCARDS ===== -->
+<div id="screen-flashcards" class="screen">
+  <nav class="topnav">
+    <button class="nav-back" onclick="goToDashboard()">←</button>
+    <span class="nav-title">🃏 Révision Flashcards</span>
+    <span class="nav-progress" id="fc-progress"></span>
+  </nav>
+  <div class="fc-container" id="fc-container"></div>
+</div>
+
+<!-- ===== GLOSSAIRE ===== -->
+<div id="screen-glossary" class="screen">
+  <nav class="topnav">
+    <button class="nav-back" onclick="goToDashboard()">←</button>
+    <span class="nav-title">📖 Glossaire</span>
+  </nav>
+  <div class="glossary-container">
+    <div class="search-wrap">
+      <input type="search" id="glossary-search" placeholder="🔍 Rechercher un terme…" oninput="renderGlossary()" />
+    </div>
+    <div id="glossary-list"></div>
+  </div>
+</div>
+
+<!-- ===== STATS ===== -->
+<div id="screen-stats" class="screen">
+  <nav class="topnav">
+    <button class="nav-back" onclick="goToDashboard()">←</button>
+    <span class="nav-title">📊 Mes statistiques</span>
+  </nav>
+  <div class="stats-container" id="stats-container"></div>
+</div>
+
 <!-- ===== CERTIFICAT ===== -->
 <div id="screen-cert" class="screen">
-  <nav class="topnav">
-    <button class="nav-back" onclick="goToDashboard()">← Retour</button>
+  <nav class="topnav no-print">
+    <button class="nav-back" onclick="goToDashboard()">←</button>
     <span class="nav-title">🏆 Certificat</span>
+    <button class="nav-chip accent" onclick="window.print()">🖨 Imprimer</button>
   </nav>
   <div class="cert-container">
-    <div class="cert-card">
-      <div class="cert-badge">🏆</div>
-      <h1>Félicitations !</h1>
-      <p class="cert-sub">Vous avez complété la formation</p>
-      <h2 class="cert-title">Bases de l'Électricité</h2>
-      <p class="cert-score" id="cert-score"></p>
-      <p class="cert-date" id="cert-date"></p>
-      <button class="btn-primary" onclick="goToDashboard()">Revoir les modules</button>
+    <div class="cert-card" id="cert-card">
+      <div class="cert-border">
+        <div class="cert-badge">⚡</div>
+        <p class="cert-org">ÉLECACADEMY</p>
+        <h1 class="cert-heading">Certificat de Réussite</h1>
+        <p class="cert-sub">atteste que son titulaire a complété avec succès la formation</p>
+        <h2 class="cert-title">Les Bases de l'Électricité</h2>
+        <div class="cert-details" id="cert-details"></div>
+        <p class="cert-date" id="cert-date"></p>
+        <div class="cert-seal">🏆</div>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Toasts -->
+<div id="toast-zone" aria-live="polite"></div>
 
 <script src="data.js"></script>
 <script src="app.js"></script>
