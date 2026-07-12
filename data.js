@@ -1340,7 +1340,7 @@ const MODULES = [
               <ul><li>Balais s'usent (maintenance)</li><li>Génèrent des étincelles</li><li>Moins robuste que le moteur AC</li></ul>
             </div>
           </div>
-          <p class="info-tip">🚗 Les moteurs DC sont très utilisés dans les voitures électriques (avec variation de vitesse électronique), les jouets, les perceuses sans fil.</p>
+          <p class="info-tip">🔧 Les moteurs DC sont très utilisés dans les jouets, perceuses sans fil, vitres et essuie-glaces de voiture. Les voitures électriques modernes, elles, utilisent plutôt des moteurs AC (synchrones ou asynchrones) pilotés par un onduleur.</p>
         `
       },
       {
@@ -1382,7 +1382,7 @@ const MODULES = [
             <div class="col-card">
               <h4>🔋 Dynamo (DC)</h4>
               <p>Produit du courant continu grâce à un collecteur. Même principe que l'alternateur mais avec redressement mécanique.</p>
-              <p><strong>Exemples :</strong> ancienne dynamo de vélo, certains générateurs portables.</p>
+              <p><strong>Exemples :</strong> anciens véhicules, certains générateurs portables. (La « dynamo » de vélo est en réalité un petit alternateur : elle produit de l'AC !)</p>
             </div>
           </div>
           <div class="example-calc">
@@ -1899,7 +1899,7 @@ const MODULES = [
         q: "Un panneau solaire photovoltaïque produit quel type de courant ?",
         choices: ["Courant alternatif (AC)", "Courant continu (DC)", "Les deux selon l'ensoleillement", "Courant pulsé"],
         answer: 1,
-        explanation: "Un panneau PV produit du courant continu (DC). L'onduleur est nécessaire pour le convertir en AC 230V utilisable dans la maison ou injectab en réseau."
+        explanation: "Un panneau PV produit du courant continu (DC). L'onduleur est nécessaire pour le convertir en AC 230V utilisable dans la maison ou injectable sur le réseau."
       },
       {
         q: "Si la vitesse du vent double, la puissance d'une éolienne est multipliée par :",
