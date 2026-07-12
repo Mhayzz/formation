@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formation Électricité — Les Bases</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== ÉCRAN D'ACCUEIL ===== -->
+<div id="screen-home" class="screen active">
+  <header class="hero">
+    <div class="hero-icon">⚡</div>
+    <h1>Formation Électricité</h1>
+    <p class="hero-sub">Maîtrisez les bases de l'électricité, de zéro à l'expert.</p>
+    <div class="hero-stats" id="hero-stats"></div>
+    <button class="btn-primary" onclick="goToDashboard()">Commencer la formation</button>
+  </header>
+  <section class="overview">
+    <h2>Ce que vous allez apprendre</h2>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <span class="ov-icon">🔋</span>
+        <h3>Les grandeurs électriques</h3>
+        <p>Tension, courant, résistance — comprendre ce qui circule dans les fils.</p>
+      </div>
+      <div class="overview-card">
+        <span class="ov-icon">📐</span>
+        <h3>La loi d'Ohm</h3>
+        <p>La loi fondamentale qui relie toutes les grandeurs électriques.</p>
+      </div>
+      <div class="overview-card">
+        <span class="ov-icon">🔌</span>
+        <h3>Circuits série & parallèle</h3>
+        <p>Comment les composants se combinent et s'influencent mutuellement.</p>
+      </div>
+      <div class="overview-card">
+        <span class="ov-icon">💡</span>
+        <h3>Puissance & énergie</h3>
+        <p>Calculer la consommation et comprendre la facture d'électricité.</p>
+      </div>
+      <div class="overview-card">
+        <span class="ov-icon">〰️</span>
+        <h3>Courant AC vs DC</h3>
+        <p>La différence entre le courant alternatif et le courant continu.</p>
+      </div>
+      <div class="overview-card">
+        <span class="ov-icon">🛡️</span>
+        <h3>Sécurité électrique</h3>
+        <p>Les règles essentielles pour travailler sans danger.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== TABLEAU DE BORD ===== -->
+<div id="screen-dashboard" class="screen">
+  <nav class="topnav">
+    <button class="nav-back" onclick="goToHome()">← Accueil</button>
+    <span class="nav-title">⚡ Ma Formation</span>
+    <span class="nav-progress" id="nav-progress-text"></span>
+  </nav>
+  <div class="dashboard">
+    <div class="progress-banner">
+      <h2>Votre progression</h2>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="global-bar"></div>
+      </div>
+      <p id="global-percent"></p>
+    </div>
+    <div class="modules-list" id="modules-list"></div>
+  </div>
+</div>
+
+<!-- ===== LEÇON ===== -->
+<div id="screen-lesson" class="screen">
+  <nav class="topnav">
+    <button class="nav-back" onclick="goToDashboard()">← Modules</button>
+    <span class="nav-title" id="lesson-nav-title"></span>
+    <span class="nav-progress" id="lesson-nav-steps"></span>
+  </nav>
+  <div class="lesson-container">
+    <div class="lesson-header">
+      <h1 id="lesson-title"></h1>
+      <p id="lesson-subtitle"></p>
+    </div>
+    <div class="lesson-steps" id="lesson-steps"></div>
+    <div class="lesson-nav-buttons">
+      <button class="btn-secondary" id="btn-prev" onclick="prevStep()">← Précédent</button>
+      <button class="btn-primary" id="btn-next" onclick="nextStep()">Suivant →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="screen-quiz" class="screen">
+  <nav class="topnav">
+    <button class="nav-back" onclick="goToDashboard()">← Modules</button>
+    <span class="nav-title" id="quiz-nav-title"></span>
+    <span class="nav-progress" id="quiz-nav-progress"></span>
+  </nav>
+  <div class="quiz-container">
+    <div id="quiz-question-block"></div>
+    <div id="quiz-result-block" class="hidden"></div>
+  </div>
+</div>
+
+<!-- ===== CERTIFICAT ===== -->
+<div id="screen-cert" class="screen">
+  <nav class="topnav">
+    <button class="nav-back" onclick="goToDashboard()">← Retour</button>
+    <span class="nav-title">🏆 Certificat</span>
+  </nav>
+  <div class="cert-container">
+    <div class="cert-card">
+      <div class="cert-badge">🏆</div>
+      <h1>Félicitations !</h1>
+      <p class="cert-sub">Vous avez complété la formation</p>
+      <h2 class="cert-title">Bases de l'Électricité</h2>
+      <p class="cert-score" id="cert-score"></p>
+      <p class="cert-date" id="cert-date"></p>
+      <button class="btn-primary" onclick="goToDashboard()">Revoir les modules</button>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
